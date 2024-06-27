@@ -1,9 +1,18 @@
+# descrição: implementação da técnica de decomposição LU para solução de sistemas de 2 ou mais incógnitas
+# autor: Julia Pereira
+
 import numpy as np
 from numpy.linalg import inv
 
 # formata os números para não usar notação científica e terem somente 4 casas decimais
 np.set_printoptions(precision = 4, suppress = True)
 
+# função de decomposição LU
+# descrição: implementa os passos da decomposição LU para a solução de sistema
+# argumentos:
+# (matrix_a): array com os coeficientes de x 
+# (vetor_b): array com os coeficientes de y
+# retorno: valores de x que solucionam as equações
 def decomposicao_LU(matrix_a, vetor_b):
     dimensao = matrix_a.shape[0] # descobre a dimesão do sistema
     matrix_L = np.float32(np.identity(dimensao)) # inicializa a matriz L com uma matriz identidade

@@ -1,4 +1,4 @@
-# Mude a função, das derivadas e o valor do erro esperados!
+# Mude a função e as derivadas!
 
 import math
 
@@ -37,9 +37,8 @@ def mostra_tabela(resultado):
     for (index, passo) in enumerate(resultado):
         print(f"{index + 1: <3}{passo[0]:.5f}".ljust(15) + f"{passo[1]:.5f}".ljust(15) + f"{passo[2]:.5f}".ljust(15) + f"{passo[3]:.5f}".ljust(15) + f"{passo[4]:.5f}".ljust(15) + f"{passo[5]:.5f}".ljust(15) + f"{passo[6]:.5f}".ljust(15))
 
-def metodo_newton():
+def metodo_newton(erro_esperado):
     x_i = define_valor_inicial()
-    erro_esperado = 0.001
     resultado = []
 
     while True:
@@ -60,4 +59,4 @@ def metodo_newton():
 
     mostra_tabela(resultado)
     
-metodo_newton()
+metodo_newton(0.001)

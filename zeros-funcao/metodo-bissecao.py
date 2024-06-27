@@ -1,4 +1,4 @@
-# Mude a função e o valor do erro esperados!
+# Mude a função!
 
 def funcao(x):
     return 2*x**3 - 7*x**2 + 3*x +  21
@@ -21,9 +21,8 @@ def mostra_tabela(resultado):
     for (index, passo) in enumerate(resultado):
         print(f"{index + 1: <3}{passo[0][0]:.5f}".ljust(15) + f"{passo[0][1]:.5f}".ljust(15) + f"{passo[1]:.5f}".ljust(15) + f"{passo[2]:.5f}".ljust(15) + f"{passo[3]:.5f}".ljust(15) + f"{passo[4]:.5f}".ljust(15) + f"{passo[5]:.5f}".ljust(15) + f"{passo[6]:.5f}".ljust(15))
 
-def metodo_bissecao():
+def metodo_bissecao(erro_esperado):
     intervalo = define_intervalo()
-    erro_esperado = 0.001
     resultado = []
 
     while True:
@@ -48,4 +47,4 @@ def metodo_bissecao():
 
     mostra_tabela(resultado)
     
-metodo_bissecao()
+metodo_bissecao(0.001)

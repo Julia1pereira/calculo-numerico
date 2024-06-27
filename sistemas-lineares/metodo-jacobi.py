@@ -1,19 +1,30 @@
+# descrição: implementação da suloção de sistemas pelo método de Jacobi
+# autor: Julia Pereira
+
 import numpy as np
 
-def metodo_jacobi(matrix_a, vetor_b):
+# formata os números para não usar notação científica e terem somente 4 casas decimais
+np.set_printoptions(precision = 4, suppress = True)
+
+# função Método de Jacobi
+# descrição: implementa os passos do método de Jacobi para a solução de sistema
+# argumentos:
+# (matrix_a): array com os coeficientes de x 
+# (vetor_b): array com os coeficientes de y
+# (erro_esperado): determina o crtério de parada
+# retorno: valores de x que solucionam as equações ou um texto caso não exista convergência
+def metodo_jacobi(matrix_a, vetor_b, erro_esperado):
     dimensao = matrix_a.shape[0]
+
     # verificação de convergência
     for i in range(0, dimensao):
         somatorio = np.sum(np.absolute(matrix_a[i])) - abs(matrix_a[i][i])
         if abs(matrix_a[i][i]) < somatorio:
-            return "Não existe convergência"
+            return "Não existe convergência. Por favor, alterar a matriz!"
         
-    # atribuição incial
+    # atribuições inciais
     vetor_x = np.zeros((dimensao, 1))
-
-    erro_esperado = 0.001
     erros = np.zeros(dimensao)
-
     passo = 1
 
     # iterações
@@ -25,11 +36,12 @@ def metodo_jacobi(matrix_a, vetor_b):
             somatorio = np.sum(np.matmul(matrix_a[i], x_ant)) - matrix_a[i][i] * vetor_x[i]
             vetor_x[i] = (vetor_b[i] - somatorio) / matrix_a[i][i] # aplicação da fórmula para encontrar x^k+1
 
-            erros[i] = abs(vetor_x[i] - x_ant[i]) # cálculo dos erros de cada x^k+1
+        erros = np.abs(vetor_x - x_ant) # cálculo dos erros de cada x^k+1
 
-        print(f'\nPasso: {passo}')
-        print(f'Vetor X: \n{np.round(vetor_x, 4)}')
-        print(f'Erros: \n{np.round(erros, 4)}')
+        # mostra os passos até a solução
+        print(f'Passo: {passo}')
+        print(f'Vetor X: \n{vetor_x}')
+        print(f'Erros: \n{erros}\n')
 
         passo += 1
         
@@ -39,6 +51,6 @@ def metodo_jacobi(matrix_a, vetor_b):
 
 c_x = np.array([[10, 3 , 2], [3, 17, 5], [2, -4, 9]])
 c_y = np.array([-2, 6, 5])
-solucao = metodo_jacobi(c_x, c_y)
+solucao = metodo_jacobi(c_x, c_y, 0.001)
 
 print(f'Solucão: {solucao}')

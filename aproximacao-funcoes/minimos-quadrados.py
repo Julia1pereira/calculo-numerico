@@ -17,7 +17,7 @@ class Pontos:
 
     def quadrados_minimos(self, forma):
 
-        if forma == 'l':
+        if forma == 'linear':
             # valores para a construção da matriz A e vetor Y
             m = self.x.shape[0]
             soma_x = np.sum(self.x)
@@ -42,7 +42,7 @@ class Pontos:
 
             return self.coeficientes
         
-        elif forma == 'q':
+        elif forma == 'quadratica':
             m = x.shape[0]
             soma_x = np.sum(x)
             soma_y = np.sum(y)
@@ -81,7 +81,7 @@ class Pontos:
         for i in range(1, self.coeficientes.shape[0]):
             self.phi_x += self.coeficientes[i] * np.power(self.x, i)
 
-        residuos = np.sum(np.power(self.y - self.phi_x, 2))
+        residuos = np.power(self.y - self.phi_x, 2)
 
         return residuos
     
@@ -102,7 +102,9 @@ y = np.array([21.2, 43.2, 49.7, 56.3, 57.9, 57.2, 55.2, 45])
 
 f = Pontos(x, y)
 
-print(f.quadrados_minimos('q'), f.quadrado_residuos())
+print(f'Coeficientes phi:\n{f.quadrados_minimos('quadratica')}\n')
+print(f'Soma do quadrado dos resíduos:\n{np.sum(f.quadrado_residuos())}\n')
+print(f'Phi:\n{f.phi_x}\n')
 
-print(f.aproximacao_valor(25))
-print(f.aproximacao_valor(47.5) - 45)
+print(f'Aproximação do valor 25:\n{f.aproximacao_valor(25)}')
+print(f'Erro absoluto para 47.5:\n{f.aproximacao_valor(47.5) - 45}')

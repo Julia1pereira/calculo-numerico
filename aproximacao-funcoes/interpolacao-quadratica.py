@@ -1,3 +1,6 @@
+# descriçao: inplementação da interpolação quadrática para a aprocimação de funções
+# autor: Julia Pereira
+
 import numpy as np
 import matplotlib.pyplot as plt
 

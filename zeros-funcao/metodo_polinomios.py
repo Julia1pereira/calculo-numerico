@@ -1,4 +1,4 @@
-# Mude os coeficientes e o valor do erro esperados!
+# Mude os coeficientes!
 
 # coeficientes = [... ,a5,  a4,  a3,  a2,  a1,  a0]
 coeficientes = [2, 5, -15, -35]
@@ -45,9 +45,8 @@ def mostra_tabela(resultado):
     for (index, passo) in enumerate(resultado):
         print(f"{index + 1: <3}{passo[0]:.5f}".ljust(15) + f"{passo[1]:.5f}".ljust(15) + f"{passo[2]:.5f}".ljust(15) + f"{passo[3]:.5f}".ljust(15) + f"{passo[4]:.5f}".ljust(15) + f"{passo[5]:.5f}".ljust(15) + f"{passo[6]}".ljust(15) + f"{passo[7]:.5f}".ljust(15))
 
-def metodo_polinomios():
+def metodo_polinomios(erro_esperado):
     x_i = define_valor_inicial()
-    erro_esperado = 0.001
     resultado = []
 
     while True:
@@ -70,4 +69,4 @@ def metodo_polinomios():
 
     mostra_tabela(resultado)
     
-metodo_polinomios()
+metodo_polinomios(0.001)
